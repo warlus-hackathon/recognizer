@@ -7,9 +7,9 @@ import cv2
 
 logger = logging.getLogger(__name__)
 
-image_path = Path('service/images/11.jpg')
-markup = Path('service/markup/11.json')
-new_path = Path('service/images/_11.jpg')
+image_path = Path('service/images/17.jpg')
+markup = Path('service/markup/17.json')
+new_path = Path('service/images/_17.jpg')
 
 
 def draw_box(image_path: Path, boxes: list[int]):
