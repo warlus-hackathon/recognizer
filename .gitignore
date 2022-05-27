@@ -132,3 +132,4 @@ dmypy.json
 service/images/
 service/markup/
 #service/train/data/warlus/labels/
+service/train/data/warlus/images/
