@@ -129,5 +129,6 @@ dmypy.json
 .pyre/
 
 # project
-images/
-markup/
+service/images/
+service/markup/
+#service/train/data/warlus/labels/
