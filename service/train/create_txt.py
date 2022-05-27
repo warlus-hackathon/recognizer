@@ -1,19 +1,17 @@
-import logging
 import json
+import logging
 from pathlib import Path
 from typing import Any
 
 import cv2
-
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
 base_marks = Path('service/markup')
-base_images = Path('service/images')
+base_images = Path('service/train/data/warlus/images')
 target_marks = Path('service/train/data/warlus/labels')
-bug = []
 
 
 def get_json(marks_path: Path) -> list[Path]:
@@ -31,11 +29,11 @@ def box_calculate(work_box: list[float], size: tuple[int, int]) -> str:
 
 def prepare_data(marks: list[dict[str, Any]], size: tuple[int, int], name: Path):
     marks_list = []
-    for mark in marks:    
+    for mark in marks:
         if not mark.get('bbox', False):
             continue
         row = box_calculate(mark['bbox'], size)
-        marks_list.append(row)    
+        marks_list.append(row)
     create_file(name, marks_list)
 
 
@@ -43,6 +41,7 @@ def create_file(name: Path, rows: list[str]) -> None:
     new_name = Path(target_marks, f'{name}.txt')
     with open(new_name, 'w') as label:
         label.writelines(rows)
+
 
 def get_size(file_name: Path) -> tuple[int, int]:
     image_path = Path(base_images, f'{file_name}.jpg')
@@ -52,7 +51,7 @@ def get_size(file_name: Path) -> tuple[int, int]:
 
 
 def run():
-    json_list = get_json(base_marks)    
+    json_list = get_json(base_marks)
     for json_file in json_list:
         with open(json_file, 'r') as j_file:
             marks = json.loads(j_file.read())
@@ -62,5 +61,6 @@ def run():
                 continue
             size = get_size(name)[:2]
             prepare_data(marks, size, name)
+
 
 run()
