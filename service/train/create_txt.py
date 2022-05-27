@@ -24,7 +24,7 @@ def box_calculate(work_box: list[float], size: tuple[int, int]) -> str:
     left_y = box[1] / size[0]
     width = box[2] / size[1]
     height = box[3] / size[0]    
-    return '1 {0}, {1}, {2}, {3}\n'.format(left_x, left_y, height, width)
+    return '1 {0} {1} {2} {3}\n'.format(left_x, left_y, width, height)
 
 
 def prepare_data(marks: list[dict[str, Any]], size: tuple[int, int], name: Path):
