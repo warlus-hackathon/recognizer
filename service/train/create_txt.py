@@ -21,12 +21,12 @@ def get_json(marks_path: Path) -> list[Path]:
 
 
 def box_calculate(work_box: list[float], size: tuple[int, int]) -> str:
-    box =work_box[:4]
+    box = work_box[:4]
     left_x = box[0] / size[0]
     left_y = box[1] / size[1]
     height = box[2] / size[0]
     width = box[3] / size[1]
-    return '1 {0:.2f}, {1:.2f}, {2:.2f}, {3:.2f}\n'.format(left_x, left_y, height, width)
+    return '1 {0}, {1}, {2}, {3}\n'.format(left_x, left_y, height, width)
 
 
 def prepare_data(marks: list[dict[str, Any]], size: tuple[int, int], name: Path):
