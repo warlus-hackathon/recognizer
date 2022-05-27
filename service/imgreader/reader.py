@@ -9,13 +9,18 @@ logger = logging.getLogger(__name__)
 
 image_path = Path('service/images/11.jpg')
 markup = Path('service/markup/11.json')
+new_path = Path('service/images/_11.jpg')
 
 
 def draw_box(image_path: Path, box: list[int]):
     print(box)
     image = cv2.imread(str(image_path))
-    
-    cv2.rectangle(image, (, b), (a + width, b + height), (0, 255, 0), 3)
+    center_x, center_y, height, width, const = box
+    left_bottom = (int(center_x), int(center_y))
+    right_bottom = (int(center_x + height), int(center_y + width))
+    print(f'left: {left_bottom}\nright: {right_bottom}')
+    cv2.rectangle(image, left_bottom, right_bottom, (0, 255, 0), 3)
+    cv2.imwrite(str(new_path), image)
 
 
 def read_boxes(markup: Path) -> list[dict[str, Any]]:
