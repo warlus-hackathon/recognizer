@@ -131,6 +131,7 @@ dmypy.json
 # project
 service/images/
 service/markup/
-#service/train/data/warlus/labels/
+service/train/data/warlus/labels/
 service/train/data/warlus/images/
+service/train/config/*.weights
 dataset/
