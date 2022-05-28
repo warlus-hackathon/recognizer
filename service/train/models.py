@@ -280,7 +280,7 @@ class Darknet(nn.Module):
 
         # Needed to write header when saving weights
         self.header_info = header
-
+        print(header)
         self.seen = header[3]
         weights = np.fromfile(fp, dtype=np.float32)  # The rest are weights
         fp.close()
