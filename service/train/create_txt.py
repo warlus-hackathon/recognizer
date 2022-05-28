@@ -20,6 +20,8 @@ def get_json(marks_path: Path) -> list[Path]:
 
 def box_calculate(work_box: list[float], size: tuple[int, int]) -> Optional[str]:
     box = work_box[:4]
+    logger.debug(box)
+    #size = (1, 1, 1, 1)
     left_x = box[0] / size[1]
     left_y = box[1] / size[0]
     width = box[2] / size[1]
@@ -27,7 +29,7 @@ def box_calculate(work_box: list[float], size: tuple[int, int]) -> Optional[str]
     row = '1 {0} {1} {2} {3}\n'.format(left_x, left_y, width, height)
     if left_x < 0 or left_y < 0 or width < 0 or height < 0:
         row = None
-    if left_x < 1 or left_y < 1 or width < 1 or height < 1:
+    if left_x > 1 or left_y > 1 or width > 1 or height > 1:
         row = None
     return row
 

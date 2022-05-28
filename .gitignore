@@ -136,3 +136,4 @@ service/train/data/warlus/images/
 service/train/config/*.weights
 dataset/
 scikit-image/
+#checkpoints/
