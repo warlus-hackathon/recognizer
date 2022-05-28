@@ -19,8 +19,7 @@ def get_json(marks_path: Path) -> list[Path]:
 
 
 def box_calculate(work_box: list[float], size: tuple[int, int]) -> str:
-    box = work_box[:4]
-    print(box)
+    box = work_box[:4]    
     ph_h, ph_w = size
     left_x = box[0] / ph_w
     left_y = box[1] / ph_h

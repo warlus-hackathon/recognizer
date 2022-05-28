@@ -136,5 +136,6 @@ service/train/data/warlus/images/
 service/train/config/*.weights
 service/image_prep/images/
 service/image_prep/labels/
+service/image_prep/marked_img/
 dataset/
 checkpoints/

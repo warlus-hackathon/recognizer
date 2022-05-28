@@ -48,22 +48,30 @@ def create_txt(json_file, save_path, part, name, image_size):
         rows = []
         for mark in marks:
             box = mark['bbox'][:4]
-            if iou_check(box, part_sizes):
-                rows.append(scale_coords(box, image_size.size))        
+            coords = iou_check(box, part_sizes)
+            if coords:
+                rows.append(coords)
         if rows:
             save_txt(name, rows, save_path, part_num)
             return True
         return False
 
 
-def iou_check(work_box, part_sizes):    
-    b_left, b_top, b_width, b_height = work_box    
-    box_sizes = (b_left, b_top, b_left + b_width, b_top + b_height)
+def iou_check(work_box, part_coords):    
+    b_left, b_top, b_width, b_height = work_box
+    b_right = b_left + b_width  
+    b_bottom = b_top + b_height
+    box_sizes = (b_left, b_top, b_right, b_bottom)
 
     b_area = b_width * b_height
-    iou = get_iou(part_sizes, box_sizes)
-    if iou and iou > b_area * 0.5:
-        return True    
+    iou = get_iou(part_coords, box_sizes)
+    if iou and iou > b_area * 0.5:        
+        left, top, right, bottom = part_coords
+        part_sizes = [right - left, bottom - top]
+        rel_left = b_left - left if b_left > left else 0
+        rel_top = b_top - top if b_top > top else 0
+        rel_coords = scale_coords([rel_left, rel_top, b_width, b_height], part_sizes)        
+        return rel_coords    
 
 
 def scale_coords(work_box: list[float], sizes: tuple[int, int]) -> str:    
@@ -86,7 +94,7 @@ def main():
     get_imgs = Path('dataset/images/')
     get_jsons = Path('dataset/markup/')
     post_crop_imgs = 'service/image_prep/images/'    
-    post_txt = Path('service/image_prep/labels')
+    post_txt = Path('service/train/data/warlus/labels')
     images = get_images(get_imgs)    
     for name, image in images:       
         json_path = Path(get_jsons, f'{name}.json')         
@@ -94,7 +102,8 @@ def main():
         for part in parts_sizes:
             created = create_txt(json_path, post_txt, part, name, image)
             if created:
-                save_imgs(image, part, post_crop_imgs, name)            
+                pass
+                # save_imgs(image, part, post_crop_imgs, name)            
 
 
 if __name__ == '__main__':
