@@ -240,8 +240,8 @@ def build_targets(
             th[b, best_n, gj, gi] = math.log(gh / anchors[best_n][1] + 1e-16)
             # One-hot encoding of label
             target_label = int(target[b, t, 0])
-            print(b, best_n, gj, gi, target_label)
-            print(tcls[0])
+            #print(b, best_n, gj, gi, target_label)
+            #print(tcls[b, best_n])
             tcls[b, best_n, gj, gi, target_label] = 1
             tconf[b, best_n, gj, gi] = 1
 

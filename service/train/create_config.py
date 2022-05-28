@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 
 base_images = Path('service/train/data/warlus/images')
-fraction = 10
+fraction = 20
 train_txt = Path('service/train/data/warlus/train.txt')
 test_txt = Path('service/train/data/warlus/val.txt')
 
@@ -41,10 +41,10 @@ def make_file(train: list[str], test: list[str]) -> None:
 def run():
     images, image_numbers = counter()
     
-    test_num = image_numbers // fraction
+    test_num = image_numbers // 100 * fraction
     train_num = image_numbers - test_num
-
-    logger.debug(image_numbers)
+    msg = f'image_numbers{image_numbers} test_num{test_num} train_num{train_num}'
+    logger.debug(msg)
 
     create_txt(images, image_numbers, train_num)
 

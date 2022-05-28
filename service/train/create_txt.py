@@ -26,7 +26,7 @@ def box_calculate(work_box: list[float], size: tuple[int, int]) -> Optional[str]
     left_y = box[1] / size[0]
     width = box[2] / size[1]
     height = box[3] / size[0]
-    row = '1 {0} {1} {2} {3}\n'.format(left_x, left_y, width, height)
+    row = '0 {0} {1} {2} {3}\n'.format(left_x, left_y, width, height)
     if left_x < 0 or left_y < 0 or width < 0 or height < 0:
         row = None
     if left_x > 1 or left_y > 1 or width > 1 or height > 1:
