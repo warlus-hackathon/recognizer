@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-base_marks = Path('service/markup')
+base_marks = Path('dataset/markup')
 base_images = Path('service/train/data/warlus/images')
 target_marks = Path('service/train/data/warlus/labels')
 
@@ -20,11 +20,13 @@ def get_json(marks_path: Path) -> list[Path]:
 
 def box_calculate(work_box: list[float], size: tuple[int, int]) -> str:
     box = work_box[:4]
-    left_x = box[0] / size[1]    
-    left_y = box[1] / size[0]
-    width = box[2] / size[1]
-    height = box[3] / size[0]    
-    return '1 {0} {1} {2} {3}\n'.format(left_x, left_y, width, height)
+    print(box)
+    ph_h, ph_w = size
+    left_x = box[0] / ph_w
+    left_y = box[1] / ph_h
+    width = box[2] / ph_w
+    height = box[3] / ph_h    
+    return '0 {0} {1} {2} {3}\n'.format(left_x, left_y, width, height)
 
 
 def prepare_data(marks: list[dict[str, Any]], size: tuple[int, int], name: Path):
