@@ -158,23 +158,3 @@ service/train/data/warlus/images/DJI_0038.jpg
 service/train/data/warlus/images/DJI_0081.jpg
 service/train/data/warlus/images/DJI_0077.jpg
 service/train/data/warlus/images/DJI_0003 (3).jpg
-service/train/data/warlus/images/DJI_0060.jpg
-service/train/data/warlus/images/DJI_0005 (6).jpg
-service/train/data/warlus/images/84.jpg
-service/train/data/warlus/images/82.jpg
-service/train/data/warlus/images/156.jpg
-service/train/data/warlus/images/DJI_0020.jpg
-service/train/data/warlus/images/86.jpg
-service/train/data/warlus/images/DJI_0064.jpg
-service/train/data/warlus/images/DJI_0005 (4).jpg
-service/train/data/warlus/images/90.jpg
-service/train/data/warlus/images/20.jpg
-service/train/data/warlus/images/DJI_0002.jpg
-service/train/data/warlus/images/DJI_0108.jpg
-service/train/data/warlus/images/DJI_0046 (2).jpg
-service/train/data/warlus/images/DJI_0035.jpg
-service/train/data/warlus/images/DJI_0038 (2).jpg
-service/train/data/warlus/images/DJI_0003 (2).jpg
-service/train/data/warlus/images/DJI_0009 (4).jpg
-service/train/data/warlus/images/DJI_0024.jpg
-service/train/data/warlus/images/61.jpg

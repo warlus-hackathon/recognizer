@@ -1,7 +1,7 @@
 import json
 import logging
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import cv2
 
@@ -18,13 +18,20 @@ def get_json(marks_path: Path) -> list[Path]:
     return [mark_file for mark_file in marks_path.iterdir()]
 
 
-def box_calculate(work_box: list[float], size: tuple[int, int]) -> str:
+def box_calculate(work_box: list[float], size: tuple[int, int]) -> Optional[str]:
     box = work_box[:4]
-    left_x = box[0] / size[1]    
+    logger.debug(box)
+    #size = (1, 1, 1, 1)
+    left_x = box[0] / size[1]
     left_y = box[1] / size[0]
     width = box[2] / size[1]
-    height = box[3] / size[0]    
-    return '1 {0} {1} {2} {3}\n'.format(left_x, left_y, width, height)
+    height = box[3] / size[0]
+    row = '0 {0} {1} {2} {3}\n'.format(left_x, left_y, width, height)
+    if left_x < 0 or left_y < 0 or width < 0 or height < 0:
+        row = None
+    if left_x > 1 or left_y > 1 or width > 1 or height > 1:
+        row = None
+    return row
 
 
 def prepare_data(marks: list[dict[str, Any]], size: tuple[int, int], name: Path):
@@ -33,6 +40,8 @@ def prepare_data(marks: list[dict[str, Any]], size: tuple[int, int], name: Path)
         if not mark.get('bbox', False):
             continue
         row = box_calculate(mark['bbox'], size)
+        if not row:
+            continue
         marks_list.append(row)
     create_file(name, marks_list)
 
