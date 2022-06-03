@@ -24,7 +24,7 @@ parser.add_argument("--image_folder", type=str, default="service/train/data/warl
 parser.add_argument("--batch_size", type=int, default=16, help="size of each image batch")
 parser.add_argument("--model_config_path", type=str, default="service/train/config/yolov3.cfg", help="path to model config file")
 parser.add_argument("--data_config_path", type=str, default="service/train/config/coco.data", help="path to data config file")
-parser.add_argument("--weights_path", type=str, default="service/train/config/yolov3.weights", help="path to weights file")
+parser.add_argument("--weights_path", type=str, default="service/train/config/yolov3-spp.weights", help="path to weights file")
 parser.add_argument("--class_path", type=str, default="service/train/config/coco.names", help="path to class label file")
 parser.add_argument("--conf_thres", type=float, default=0.8, help="object confidence threshold")
 parser.add_argument("--nms_thres", type=float, default=0.4, help="iou thresshold for non-maximum suppression")
